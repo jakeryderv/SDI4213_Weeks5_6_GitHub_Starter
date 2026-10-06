@@ -23,6 +23,8 @@ Workflow run: https://github.com/jakeryderv/SDI4213_Weeks5_6_GitHub_Starter/acti
 
 ### Setup validation
 
+This project uses uv to manage its Python environment and dependencies. The standard `pyproject.toml` file centralizes project metadata, dependencies, and pytest/Ruff configuration, while `uv.lock` records resolved dependency versions. Make commands provide consistent tooling commands locally and in CI. A generated `requirements.txt` preserves compatibility with the assignment's Dockerfile and ZIP package.
+
 - Setup issue: https://github.com/jakeryderv/SDI4213_Weeks5_6_GitHub_Starter/issues/1
 - Requirements export: `make requirements` completed successfully on 2026-10-06.
 - Local checks: `make check` completed successfully on 2026-10-06: Ruff lint passed, all 16 Python files were already formatted, and all 15 tests passed with 1 dependency deprecation warning.
