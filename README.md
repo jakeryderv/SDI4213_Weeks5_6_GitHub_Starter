@@ -99,10 +99,11 @@ With Make installed, run `make` to list the available targets, their description
 | `make check` | Check lint, formatting, and tests in sequence. |
 | `make app` | Start the development server. |
 | `make requirements` | Export locked dependencies to `requirements.txt`. |
+| `make package` | Export locked dependencies and create `dist/sdi4213-app.zip`. Requires `zip`. |
 
 ### Requirements Export for the Exercise
 
-`requirements.txt` is generated from `uv.lock` for the existing pip-based GitHub Actions workflow and the assignment's Dockerfile and ZIP package. Change dependencies through uv or `pyproject.toml`, then regenerate the export:
+`requirements.txt` is generated from `uv.lock` for the assignment's Dockerfile and ZIP package. GitHub Actions installs dependencies directly with `uv sync --locked`. Change dependencies through uv or `pyproject.toml`, then regenerate the export:
 
 ```bash
 make requirements
@@ -114,7 +115,7 @@ Without Make, run:
 uv export --locked --format requirements.txt --no-emit-project --output-file requirements.txt
 ```
 
-The export includes development dependencies because the existing CI workflow needs pytest and HTTPX. Commit `pyproject.toml`, `uv.lock`, `.python-version`, and the generated `requirements.txt`; do not edit the export by hand or commit `.venv`.
+The export includes development dependencies to preserve the instructor's pip-based test workflow. Commit `pyproject.toml`, `uv.lock`, `.python-version`, and the generated `requirements.txt`; do not edit the export by hand or commit `.venv`.
 
 The instructor's pip workflow remains supported in an activated Python 3.13 virtual environment: install with `python -m pip install -r requirements.txt`, then run `python -m pytest -v`.
 
@@ -130,14 +131,26 @@ Do not perform routine assignment work directly on `main`.
 
 ## Week 5 Starting Point
 
-The workflow in `.github/workflows/ci.yml` currently runs automated tests.
+The workflow in `.github/workflows/ci.yml` installs locked dependencies with uv, checks lint and formatting, runs automated tests, creates a ZIP package, and uploads it using `actions/upload-artifact@v4`.
 
-Your job is to complete the **TODO** section so the workflow also:
+Build the same package locally with:
 
-1. creates a release package
-2. uploads that package as a GitHub Actions artifact
+```bash
+make package
+```
 
-Do not remove the automated test step.
+Packaging requires Make and `zip`. The resulting `dist/sdi4213-app.zip` contains `app/`, `requirements.txt`, `README.md`, and `VERSION`. Python caches are excluded.
+
+CI checks that the exported `requirements.txt` matches the committed file. Run `make requirements` and commit the updated export whenever dependencies change.
+
+The uv and Make development commands require the full repository checkout. To run an extracted ZIP, create and activate a Python 3.13 virtual environment, then run:
+
+```bash
+python -m pip install -r requirements.txt
+python -m uvicorn app.main:app
+```
+
+After merging the build pull request, follow the assignment's tagging and GitHub Release steps.
 
 ## Week 6 Starting Point
 
