@@ -1,7 +1,7 @@
 import pytest
 
-from app.models import Item
 from app import services
+from app.models import Item
 
 
 @pytest.fixture(autouse=True)

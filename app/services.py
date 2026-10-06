@@ -1,6 +1,5 @@
 from app.models import Item
 
-
 # In-memory starter data. Later in the course, this can be replaced with a database.
 ITEMS: list[Item] = [
     Item(id=1, name="Laptop", quantity=3, category="equipment"),
