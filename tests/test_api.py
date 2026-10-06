@@ -57,7 +57,12 @@ def test_add_item_creates_item():
 
 
 def test_add_item_rejects_duplicate_id():
-    payload = {"id": 1, "name": "Duplicate laptop", "quantity": 1, "category": "equipment"}
+    payload = {
+        "id": 1,
+        "name": "Duplicate laptop",
+        "quantity": 1,
+        "category": "equipment",
+    }
 
     response = client.post("/items", json=payload)
 
