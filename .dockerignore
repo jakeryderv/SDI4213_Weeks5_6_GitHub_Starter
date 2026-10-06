@@ -1,13 +1,19 @@
-# WEEK 6 STARTER .dockerignore
-# Review this list and add anything else that should not enter the Docker build context.
-
-.venv/
-__pycache__/
-*.pyc
-.pytest_cache/
+# Version control and local environments
 .git/
 .github/
+.venv/
 .env
 
-# TODO: Decide whether tests/, docs/, and other development-only files
-# should be excluded from your final application image build context.
+# Python caches, including those nested inside app/
+__pycache__/
+**/__pycache__/
+*.pyc
+**/*.pyc
+.pytest_cache/
+.ruff_cache/
+
+# Generated artifacts and development-only resources
+dist/
+tests/
+docs/
+student-resources/
