@@ -4,17 +4,14 @@ Document meaningful project releases here.
 
 ## Unreleased
 
-### Added
-- Week 5–6 starter repository initialized.
-
-<!--
-WEEK 5 TODO:
-When you create your first versioned release, add a section such as:
-
 ## [0.1.0]
 
 ### Added
-- Automated build artifact creation.
+- Week 5–6 starter application and automated tests.
+- uv dependency management and development tooling.
+- Reproducible ZIP packaging with `make package`.
 - GitHub Actions artifact upload.
-- Docker containerization.
--->
+
+### Changed
+- CI installs locked dependencies with uv.
+- CI checks Ruff lint and formatting before running automated tests.

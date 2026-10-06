@@ -1,14 +1,24 @@
 .DEFAULT_GOAL := help
 
-.PHONY: help lint lint-fix format format-check fix test check app requirements
+.PHONY: help lint lint-fix format format-check fix test check app requirements package
 
-LINT := uv run ruff check .
-LINT_FIX := uv run ruff check --fix .
-FORMAT := uv run ruff format .
-FORMAT_CHECK := uv run ruff format --check .
-TEST := uv run python -m pytest
-APP := uv run uvicorn app.main:app --reload
+UV_RUN := uv run --locked
+
+LINT := $(UV_RUN) ruff check .
+LINT_FIX := $(UV_RUN) ruff check --fix .
+FORMAT := $(UV_RUN) ruff format .
+FORMAT_CHECK := $(UV_RUN) ruff format --check .
+TEST := $(UV_RUN) python -m pytest
+APP := $(UV_RUN) uvicorn app.main:app --reload
 REQUIREMENTS := uv export --locked --format requirements.txt --no-emit-project --output-file requirements.txt
+
+PACKAGE := rm -rf dist/package && \
+	rm -f dist/sdi4213-app.zip && \
+	mkdir -p dist/package && \
+	cp -R app dist/package/ && \
+	cp requirements.txt README.md VERSION dist/package/ && \
+	cd dist/package && \
+	zip -r ../sdi4213-app.zip . -x "*/__pycache__/*" "*.pyc"
 
 FIX := $(LINT_FIX) && $(FORMAT)
 CHECK := $(LINT) && $(FORMAT_CHECK) && $(TEST)
@@ -43,7 +53,11 @@ help:
 		'    $(APP)' \
 		'' \
 		'make requirements - Export locked dependencies' \
-		'    $(REQUIREMENTS)'
+		'    $(REQUIREMENTS)' \
+		'' \
+		'make package - Export dependencies and create the assignment ZIP' \
+		'    $(REQUIREMENTS)' \
+		'    $(PACKAGE)'
 
 lint:
 	$(LINT)
@@ -71,3 +85,6 @@ app:
 
 requirements:
 	$(REQUIREMENTS)
+
+package: requirements
+	$(PACKAGE)

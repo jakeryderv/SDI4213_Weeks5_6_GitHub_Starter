@@ -29,10 +29,34 @@ Workflow run: https://github.com/jakeryderv/SDI4213_Weeks5_6_GitHub_Starter/acti
 - Warning: Starlette's test client references the deprecated `anyio.abc.BlockingPortal` alias. The warning did not fail the tests.
 
 ## Part B - Week 5 build automation
-- Pull request URL:
-- Successful workflow run URL:
-- Artifact name:
-- What files are inside the downloaded artifact?
+
+- Build issue: https://github.com/jakeryderv/SDI4213_Weeks5_6_GitHub_Starter/issues/3
+- Pull request URL: https://github.com/jakeryderv/SDI4213_Weeks5_6_GitHub_Starter/pull/4
+- Successful workflow run URL: https://github.com/jakeryderv/SDI4213_Weeks5_6_GitHub_Starter/actions/runs/37510119164
+- Build commit: `c416ea0636616ae3a54ff3b4819202450e241727` on `feature/build-artifact`.
+- Artifact name: `sdi4213-app`.
+- Packaged ZIP: `sdi4213-app.zip` inside the downloaded GitHub Actions artifact archive.
+- Downloaded package contents: `app/`, `requirements.txt`, `README.md`, and `VERSION`. The application directory contains `__init__.py`, `main.py`, `models.py`, and `services.py`.
+- Verification: GitHub Actions CI passed on 2026-10-06 and uploaded one artifact. The downloaded artifact was extracted locally, and its application ZIP contained all four required entries without Python cache files.
+
+![Milestone 3 - Successful CI and uploaded artifact](evidence/Screenshot_2026-10-06_13-38-02.png)
+
+Milestone 3 - The GitHub Actions run succeeds and lists the uploaded `sdi4213-app` artifact.
+
+### Downloaded artifact extraction
+
+After downloading the artifact into `~/tmp/devops-weeks56`, extract the GitHub Actions archive, then the application ZIP it contains:
+
+```bash
+cd ~/tmp/devops-weeks56
+unzip sdi4213-app.zip -d test-extract
+unzip test-extract/sdi4213-app.zip -d test-extract/package
+tree test-extract/package
+```
+
+![Milestone 4 - Extracted application package](evidence/Screenshot_2026-10-06_13-42-57.png)
+
+Milestone 4 - The terminal listing of the extracted package shows `app/`, `requirements.txt`, `README.md`, and `VERSION`, with 2 directories and 7 files.
 
 ## Part C - Version and release
 - Version:
