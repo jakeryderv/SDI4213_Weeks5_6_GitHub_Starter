@@ -1,6 +1,6 @@
 # Week 5-6 Exercise Evidence
 
-Name:
+Name: Jake Van Slyke
 GitHub repository URL: https://github.com/jakeryderv/SDI4213_Weeks5_6_GitHub_Starter
 
 ## Part A - Starting validation
@@ -138,9 +138,18 @@ A subsequent read-only check confirmed that `sdi4213-week56:0.1.0` still exists 
 
 ### Final pull request and CI
 
-- Pull request URL: pending.
-- Successful workflow run URL: pending.
-- Milestone 10 screenshot: pending the containerization pull request and successful CI checks.
+- Pull request URL: https://github.com/jakeryderv/SDI4213_Weeks5_6_GitHub_Starter/pull/6
+- Pull request title: `Containerize application with Docker`.
+- Branch: `feature/docker-container` into `main`.
+- Successful workflow run URL: https://github.com/jakeryderv/SDI4213_Weeks5_6_GitHub_Starter/actions/runs/37517840511
+- Validated commit: `96d6a129f6a960f20dc5e0e372d265af8a5fd27b`.
+- Status at capture: PR #6 was open with all CI checks passing on 2026-10-06, before merge.
+
+![Milestone 10 - Containerization pull request and passing CI](evidence/Screenshot_2026-10-06_14-19-17.png)
+
+Milestone 10 - Containerization changes passed CI through the pull request workflow; the screenshot was captured before merge.
+
+The screenshot shows the repository URL, pull request title, source and target branches, and successful `CI / test-and-build` check.
 
 ## Reflection
 
